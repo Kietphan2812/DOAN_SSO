@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Báo Cáo Phân Tích &amp; Thiết Kế Hệ Thống - Website Bán Quần Áo | Nhóm 4</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+    :root {
+      --primary: #0f172a;
+      --accent: #2563eb;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+
+    .doc-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card);
+      padding: 60px 50px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border);
+    }
+
+    /* Cover Header */
+    .cover-box {
+      text-align: center;
+      padding: 40px 20px;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 40px;
+    }
+
+    .cover-tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .cover-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .cover-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .cover-meta {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      border-top: 1px dashed var(--border);
+      padding-top: 20px;
+    }
+
+    h1, h2, h3, h4 {
+      color: var(--primary);
+      margin-top: 36px;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    h1 { font-size: 1.8rem; border-bottom: 2px solid var(--accent); padding-bottom: 8px; }
+    h2 { font-size: 1.4rem; color: var(--accent); }
+    h3 { font-size: 1.15rem; }
+
+    p { margin-bottom: 16px; }
+
+    ul, ol {
+      margin-bottom: 20px;
+      padding-left: 24px;
+    }
+
+    li { margin-bottom: 8px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 0.925rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      text-align: left;
+    }
+
+    th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    pre, code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+    }
+
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 20px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 20px 0;
+      line-height: 1.5;
+    }
+
+    code:not(pre code) {
+      background: #eff6ff;
+      color: var(--accent);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+
+    .badge-ok {
+      display: inline-block;
+      background: #dcfce7;
+      color: #15803d;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      z-index: 100;
+    }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .doc-container { box-shadow: none; border: none; padding: 0; }
+      .print-btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()">🖨 In / Xuất Báo Cáo PDF</button>
+
+  <div class="doc-container">
+    <div class="cover-box">
+      <span class="cover-tag">BÁO CÁO PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG</span>
+      <h1 class="cover-title">XÂY DỰNG WEBSITE BÁN QUẦN ÁO THỜI TRANG TÍCH HỢP HỆ THỐNG XÁC THỰC EMAIL, QUẢN TRỊ BÀI VIẾT VÀ BÁN HÀNG TRỰC TUYẾN</h1>
+      <div class="cover-sub">Thương hiệu: AURA FASHION</div>
+      <div class="cover-meta">
+        <div><strong>Môn học:</strong> Phát triển phần mềm mã nguồn mở</div>
+        <div><strong>Đơn vị thực hiện:</strong> Nhóm 4</div>
+        <div><strong>Năm học:</strong> 2026</div>
+      </div>
+    </div>
+
+    <h2>1. Tổng Quan Hệ Thống</h2>
+    <p>Hệ thống <strong>AURA FASHION</strong> là website thương mại điện tử chuyên ngành thời trang được phát triển hoàn toàn trên nền tảng các công nghệ mã nguồn mở (Node.js, Express, SQLite, Nodemailer, JWT, bcryptjs, Multer và Vanilla CSS Design System). Hệ thống cung cấp một giải pháp toàn diện bao gồm:</p>
+    <ul>
+      <li><strong>Hệ thống xác thực &amp; bảo mật:</strong> Đăng ký, đăng nhập, xác thực kích hoạt email bằng mã OTP 6 số và Token bảo mật, quên mật khẩu và tạo lại mật khẩu mới an toàn.</li>
+      <li><strong>Quản lý bài viết thời trang (Blog / News):</strong> Toàn bộ quy trình CRUD (Tạo mới, Xem chi tiết kèm bộ đếm view, Tìm kiếm theo từ khóa/danh mục, Cập nhật và Xóa bài viết).</li>
+      <li><strong>Quản lý trang cá nhân:</strong> Xem thông tin tài khoản, cập nhật họ tên, số điện thoại, địa chỉ, tải lên ảnh đại diện (Avatar), đổi mật khẩu và theo dõi lịch sử đơn hàng.</li>
+      <li><strong>Bán hàng trực tuyến:</strong> Xem danh mục thời trang (Áo, Quần, Blazer, Váy, Phụ kiện), bộ lọc tìm kiếm và sắp xếp giá, xem chi tiết sản phẩm chọn size/màu, giỏ hàng, quy trình đặt hàng hỗ trợ COD và chuyển khoản quét mã VietQR.</li>
+      <li><strong>Trang quản trị (Admin Dashboard):</strong> Thống kê doanh thu, đơn hàng, người dùng, bài viết và quản lý trạng thái xử lý đơn hàng.</li>
+    </ul>
+
+    <h2>2. Bảng Phân Quyền Hệ Thống (RBAC)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Chức năng</th>
+          <th>Khách vãng lai (Guest)</th>
+          <th>Khách hàng (User)</th>
+          <th>Quản trị viên (Admin)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Xem &amp; Tìm kiếm sản phẩm, bài viết</td>
+          <td><span class="badge-ok">Cho phép</span></td>
+          <td><span class="badge-ok">Cho phép</span></td>
+          <td><span class="badge-ok">Cho phép</span></td>
+        </tr>
+        <tr>
+          <td>Đăng ký &amp; Kích hoạt Email</td>
+          <td><span class="badge-ok">Cho phép</span></td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>Đăng nhập hệ thống</td>
+          <td><span class="badge-ok">Cho phép</span></td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>Quên mật khẩu &amp; Tạo mật khẩu mới</td>
+          <td><span class="badge-ok">Cho phép</span></td>
+          <td><span class="badge-ok">Cho phép</span></td>
+          <td><span class="badge-ok">Cho phép</span></td>
+        </tr>
+        <tr>
+          <td>Quản lý trang cá nhân &amp; Đổi thông tin/mật khẩu</td>
+          <td>Không</td>
+          <td><span class="badge-ok">Cho phép</span></td>
+          <td><span class="badge-ok">Cho phép</span></td>
+        </tr>
+        <tr>
+          <td>Tạo &amp; Quản lý bài viết của mình</td>
+          <td>Không</td>
+          <td><span class="badge-ok">Cho phép</span></td>
+          <td><span class="badge-ok">Cho phép</span></td>
+        </tr>
+        <tr>
+          <td>Quản lý tất cả sản phẩm &amp; Đơn hàng</td>
+          <td>Không</td>
+          <td>Không</td>
+          <td><span class="badge-ok">Cho phép</span></td>
+        </tr>
+        <tr>
+          <td>Xem biểu đồ &amp; Thống kê doanh thu</td>
+          <td>Không</td>
+          <td>Không</td>
+          <td><span class="badge-ok">Cho phép</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>3. Cấu Trúc Cơ Sở Dữ Liệu Quan Hệ (Database Schema)</h2>
+    <p>Cơ sở dữ liệu được tổ chức tại tệp <code>database.sqlite</code> với 6 bảng chuẩn hóa:</p>
+    <ul>
+      <li><code>users</code>: Lưu tài khoản, mật khẩu băm bcrypt, vai trò (role: user/admin), trạng thái kích hoạt email (is_verified), token và OTP.</li>
+      <li><code>categories</code>: Danh mục sản phẩm (Áo, Quần jeans, Áo khoác &amp; Blazer, Váy đầm, Phụ kiện).</li>
+      <li><code>products</code>: Sản phẩm thời trang, giá niêm yết, giá khuyến mãi, size (JSON), màu sắc (JSON), số lượng tồn kho.</li>
+      <li><code>posts</code>: Bài viết phong cách thời trang, chuyên mục, tóm tắt, nội dung, ảnh bìa, tác giả (author_id), lượt xem.</li>
+      <li><code>orders</code>: Đơn hàng, mã đơn, người nhận, số điện thoại, địa chỉ, phương thức thanh toán (COD / Chuyển khoản QR), tổng tiền và trạng thái đơn hàng.</li>
+      <li><code>order_items</code>: Các mặt hàng trong đơn hàng, đơn giá, kích cỡ, màu sắc và số lượng mua.</li>
+    </ul>
+
+    <h2>4. Danh Sách Tài Khoản Thử Nghiệm</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Vai trò</th>
+          <th>Địa chỉ Email</th>
+          <th>Mật khẩu</th>
+          <th>Quyền hạn</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Quản trị viên (Admin)</strong></td>
+          <td><code>admin@fashionhub.vn</code></td>
+          <td><code>Admin@123</code></td>
+          <td>Toàn quyền hệ thống, xem thống kê, quản trị sản phẩm &amp; đơn hàng</td>
+        </tr>
+        <tr>
+          <td><strong>Khách hàng mẫu (User)</strong></td>
+          <td><code>khachhang@fashionhub.vn</code></td>
+          <td><code>User@123</code></td>
+          <td>Mua sắm, quản lý trang cá nhân, viết bài thời trang</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>5. Hướng Dẫn Vận Hành Hệ Thống</h2>
+    <pre><code># 1. Khởi động máy chủ:
+npm start
+
+# 2. Mở trình duyệt truy cập:
+http://localhost:5000</code></pre>
+
+    <div style="margin-top: 50px; text-align: center; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); padding-top: 20px;">
+      Tài liệu phân tích &amp; thiết kế hệ thống - Nhóm 4 (Phát triển phần mềm mã nguồn mở) - 2026
+    </div>
+  </div>
+
+</body>
+</html>

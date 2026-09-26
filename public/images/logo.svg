@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 56" width="260" height="56">
+  <defs>
+    <linearGradient id="fullGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F9E79F"/>
+      <stop offset="25%" stop-color="#D4AC0D"/>
+      <stop offset="50%" stop-color="#F7DC6F"/>
+      <stop offset="75%" stop-color="#B7950B"/>
+      <stop offset="100%" stop-color="#F1C40F"/>
+    </linearGradient>
+    <linearGradient id="fullDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <filter id="iconGlow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#D4AC0D" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Left Emblem (46x46) -->
+  <g transform="translate(4, 5)">
+    <!-- Badge Background -->
+    <rect x="0" y="0" width="46" height="46" rx="12" fill="url(#fullDark)" stroke="url(#fullGold)" stroke-width="1.2" />
+    <rect x="3" y="3" width="40" height="40" rx="9" fill="none" stroke="url(#fullGold)" stroke-width="0.5" stroke-opacity="0.4" stroke-dasharray="2 2"/>
+
+    <!-- Monogram A -->
+    <g filter="url(#iconGlow)">
+      <path d="M23 9 L13 36 L17 36 L23 20 L29 36 L33 36 Z" fill="url(#fullGold)" />
+      <path d="M16 28 L30 28 L31 31 L15 31 Z" fill="#FFFFFF" fill-opacity="0.9" />
+      <polygon points="23,6 24.5,9.5 28,11 24.5,12.5 23,16 21.5,12.5 18,11 21.5,9.5" fill="#FFFBEB" />
+    </g>
+  </g>
+
+  <!-- Brand Typography -->
+  <g transform="translate(62, 0)">
+    <!-- Primary Name: AURA -->
+    <text x="0" y="30" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-size="23" font-weight="900" letter-spacing="4" fill="currentColor">
+      AURA
+    </text>
+
+    <!-- Secondary Category: FASHION -->
+    <text x="88" y="30" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-size="23" font-weight="400" letter-spacing="3" fill="url(#fullGold)">
+      FASHION
+    </text>
+
+    <!-- Subtitle / Tagline -->
+    <text x="2" y="44" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-size="7.5" font-weight="700" letter-spacing="3" fill="#94A3B8">
+      HAUTE COUTURE &bull; EST. 2026
+    </text>
+
+    <!-- Thin golden accent underline -->
+    <line x1="2" y1="48" x2="195" y2="48" stroke="url(#fullGold)" stroke-width="1" stroke-opacity="0.4"/>
+  </g>
+</svg>

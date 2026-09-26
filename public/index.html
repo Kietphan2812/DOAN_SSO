@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA FASHION - Cửa Hàng Thời Trang Hiện Đại &amp; Phong Cách | Nhóm 4</title>
+  <meta name="description" content="Website bán quần áo thời trang cao cấp AURA FASHION. Môn Phát triển phần mềm mã nguồn mở - Nhóm 4. Tích hợp xác thực email, quản lý bài viết và bán hàng trực tuyến.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/shop.css">
+  <link rel="stylesheet" href="/css/blog.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <link rel="stylesheet" href="/css/profile.css">
+  <link rel="stylesheet" href="/css/admin.css">
+
+  <link rel="icon" type="image/svg+xml" href="/images/logo-icon.svg">
+</head>
+<body>
+
+  <!-- ==================== HEADER & NAVBAR ==================== -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <!-- Logo -->
+      <a href="#home" class="brand-logo" title="AURA FASHION">
+        <img src="/images/logo-icon.svg" alt="AURA Logo" class="brand-logo-icon">
+        <div class="brand-logo-text">
+          <span class="brand-main">AURA</span>
+          <span class="brand-sub">FASHION</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <ul class="nav-links" id="main-nav-links">
+        <li><a href="#home" class="active">Trang Chủ</a></li>
+        <li><a href="#shop">Cửa Hàng</a></li>
+        <li><a href="#blog">Bài Viết Thời Trang</a></li>
+        <li id="nav-admin-link" style="display: none;"><a href="#admin" style="color: var(--accent); font-weight: 700;">⚙ Quản Trị</a></li>
+      </ul>
+
+      <!-- Nav Actions (Cart, Theme, Auth) -->
+      <div class="nav-actions">
+        <!-- Theme toggle -->
+        <button class="action-icon-btn" id="theme-toggle-btn" onclick="app.toggleTheme()" title="Đổi giao diện Sáng / Tối">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+
+        <!-- Cart Button -->
+        <button class="action-icon-btn" onclick="shop.openCart()" title="Xem giỏ hàng">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="action-badge" id="cart-badge-count" style="display: none;">0</span>
+        </button>
+
+        <!-- Logged out: Login / Register buttons -->
+        <div id="nav-auth-actions" style="display: flex; gap: 10px;">
+          <button class="btn btn-sm btn-outline" onclick="app.openModal('modal-login')">Đăng Nhập</button>
+          <button class="btn btn-sm btn-primary" onclick="app.openModal('modal-register')">Đăng Ký</button>
+        </div>
+
+        <!-- Logged in: User Avatar Dropdown -->
+        <div class="user-dropdown" id="nav-user-dropdown" style="display: none;">
+          <button class="user-avatar-btn" id="nav-user-btn">
+            <img src="/uploads/default-avatar.png" id="user-avatar-img" class="user-avatar-img" alt="Avatar">
+            <span style="font-size: 0.75rem; color: var(--text-muted);">▼</span>
+          </button>
+          <div class="user-menu-box">
+            <div class="user-menu-header">
+              <div class="user-menu-name" id="user-menu-name">Người dùng</div>
+              <div class="user-menu-email" id="user-menu-email">user@email.com</div>
+            </div>
+            <a href="#profile" class="user-menu-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Trang Cá Nhân
+            </a>
+            <a href="javascript:void(0)" onclick="blog.openCreateModal()" class="user-menu-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              Viết Bài Mới
+            </a>
+            <div class="menu-divider"></div>
+            <a href="javascript:void(0)" onclick="auth.logout()" class="user-menu-item" style="color: var(--danger);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              Đăng Xuất
+            </a>
+          </div>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button class="mobile-toggle" id="mobile-menu-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT CONTAINER ==================== -->
+  <main id="main-content">
+
+    <!-- 1. VIEW HOME (Trang Chủ) -->
+    <section id="view-home" class="container">
+      <!-- Hero Banner -->
+      <div class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <span class="hero-tag">✨ Bộ Sưu Tập Mới 2026</span>
+          <h1 class="hero-title">Định Hình Phong Cách Thời Trang Của Bạn</h1>
+          <p class="hero-desc">
+            Khám phá những thiết kế thời thượng, tối giản nhưng đậm chất hiện đại. Chất liệu cao cấp, phom dáng chuẩn cho mọi khoảnh khắc.
+          </p>
+          <div class="hero-cta">
+            <a href="#shop" class="btn btn-accent btn-lg">🛍️ Khám Phá Cửa Hàng</a>
+            <a href="#blog" class="btn btn-outline btn-lg" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: white;">📰 Xem Bí Quyết Phối Đồ</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Cards -->
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div class="feature-info">
+            <h4>Giao Hàng Hỏa Tốc</h4>
+            <p>Vận chuyển nhanh chóng toàn quốc trong 24-48h</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          </div>
+          <div class="feature-info">
+            <h4>Đổi Trả 30 Ngày</h4>
+            <p>Đổi size, mẫu miễn phí dễ dàng nếu chưa vừa ý</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="feature-info">
+            <h4>Thanh Toán Linh Hoạt</h4>
+            <p>Hỗ trợ COD nhận hàng kiểm tra hoặc Chuyển khoản QR</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+          </div>
+          <div class="feature-info">
+            <h4>Tư Vấn Tận Tâm 24/7</h4>
+            <p>Đội ngũ chuyên viên tư vấn size chuẩn xác</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Section on Home -->
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px;">
+        <div>
+          <span class="badge badge-accent">BỘ SƯU TẬP NỔI BẬT</span>
+          <h2 style="font-size: 2rem; margin-top: 8px;">Sản Phẩm Bán Chạy Nhất</h2>
+        </div>
+        <a href="#shop" class="btn btn-outline btn-sm">Xem tất cả sản phẩm →</a>
+      </div>
+
+      <div class="products-grid" id="home-featured-grid">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Banner CTA -->
+      <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; border-radius: var(--radius-lg); padding: 48px; text-align: center; margin: 40px 0 60px;">
+        <span class="badge badge-accent" style="margin-bottom: 12px;">ƯU ĐÃI THÀNH VIÊN</span>
+        <h2 style="color: white; font-size: 2rem; margin-bottom: 12px;">Đăng Ký Tài Khoản Nhận Ngay Ưu Đãi 15%</h2>
+        <p style="color: #cbd5e1; max-width: 540px; margin: 0 auto 24px;">
+          Tham gia cộng đồng thời trang AURA FASHION để nhận mã xác nhận kích hoạt tài khoản qua email và cập nhật các xu hướng hot nhất.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 12px;">
+          <button class="btn btn-accent btn-lg" onclick="app.openModal('modal-register')">Đăng Ký Tài Khoản Ngay</button>
+          <a href="#shop" class="btn btn-outline btn-lg" style="color: white; border-color: rgba(255,255,255,0.3);">Vào Cửa Hàng Mua Sắm</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. VIEW SHOP (Cửa Hàng Thời Trang) -->
+    <section id="view-shop" class="container" style="display: none; padding-top: 10px;">
+      <div style="text-align: center; margin-bottom: 28px; padding-top: 16px;">
+        <span class="badge badge-accent">AURA FASHION STORE</span>
+        <h1 style="font-size: 2.4rem; margin-top: 8px; font-weight: 800;">Cửa Hàng Quần Áo Thời Trang</h1>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 8px auto 0;">
+          Khám phá trọn bộ sưu tập áo thun, sơ mi, blazer, quần jeans, váy đầm và phụ kiện thiết kế chuẩn phong cách.
+        </p>
+      </div>
+
+      <!-- Categories Filter Pills -->
+      <div class="category-filter-bar" id="category-pills-container">
+        <!-- Rendered dynamically via shop.js -->
+      </div>
+
+      <!-- Toolbar Search & Sort -->
+      <div class="catalog-toolbar">
+        <div class="search-input-wrapper">
+          <span class="search-icon-inside" style="display: flex; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <input type="text" class="search-input" id="shop-search-input" placeholder="Tìm kiếm áo thun, sơ mi, blazer, quần jeans..." oninput="shop.state.searchQuery = this.value; shop.loadProducts();">
+        </div>
+        <div class="toolbar-controls">
+          <label style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">Sắp xếp:</label>
+          <select class="sort-select" onchange="shop.state.sortBy = this.value; shop.loadProducts();">
+            <option value="newest">Mới nhất</option>
+            <option value="price_asc">Giá tăng dần</option>
+            <option value="price_desc">Giá giảm dần</option>
+            <option value="name_asc">Tên A - Z</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="products-grid" id="products-grid">
+        <!-- Rendered dynamically via shop.js -->
+      </div>
+    </section>
+
+    <!-- 3. VIEW BLOG / BÀI VIẾT THỜI TRANG -->
+    <section id="view-blog" class="container" style="display: none;">
+      <div class="blog-header">
+        <span class="badge badge-accent">BLOG &amp; PHONG CÁCH</span>
+        <h1>Tin Tức &amp; Xu Hướng Thời Trang</h1>
+        <p>Cập nhật những xu hướng thời trang mới nhất, cẩm nang phối đồ và bí quyết chăm sóc trang phục chuẩn gu.</p>
+      </div>
+
+      <!-- Blog Action Bar -->
+      <div class="blog-action-bar">
+        <div class="blog-search-box">
+          <span class="blog-search-icon" style="display: flex; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <input type="text" id="blog-search-input" placeholder="Tìm kiếm bài viết theo từ khóa..." oninput="blog.search(this.value)">
+        </div>
+
+        <div class="blog-filters">
+          <select class="form-control" id="blog-category-filter" style="width: auto;" onchange="blog.filterByCategory(this.value)">
+            <option value="all">Tất cả chủ đề</option>
+          </select>
+
+          <button class="btn btn-accent" onclick="blog.openCreateModal()" style="display: inline-flex; align-items: center; gap: 8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Viết Bài Mới
+          </button>
+        </div>
+      </div>
+
+      <!-- Posts Grid -->
+      <div class="posts-grid" id="posts-grid">
+        <!-- Rendered dynamically via blog.js -->
+      </div>
+    </section>
+
+    <!-- 4. VIEW BLOG DETAIL (Đọc bài viết) -->
+    <section id="view-blog-detail" class="container" style="display: none;">
+      <div id="post-reader-content">
+        <!-- Rendered dynamically via blog.openPostDetail() -->
+      </div>
+    </section>
+
+    <!-- 5. VIEW PROFILE (Quản lý trang cá nhân) -->
+    <section id="view-profile" class="container" style="display: none;">
+      <div class="profile-layout">
+        <!-- Sidebar -->
+        <aside class="profile-sidebar">
+          <div class="profile-avatar-wrapper">
+            <img src="/uploads/default-avatar.png" id="profile-sidebar-avatar" class="profile-avatar-img" alt="Avatar">
+            <label for="avatar-file-input" class="avatar-upload-label" title="Tải ảnh mới">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </label>
+            <input type="file" id="avatar-file-input" accept="image/*" style="display: none;" onchange="profile.uploadAvatar(this)">
+          </div>
+
+          <h3 class="profile-name" id="profile-sidebar-name">Đang tải...</h3>
+          <p class="profile-email" id="profile-sidebar-email">...</p>
+          <div class="profile-status-badge" id="profile-sidebar-verify"></div>
+
+          <ul class="profile-nav-menu">
+            <li>
+              <button class="profile-nav-btn active" data-tab="info" onclick="profile.switchTab('info')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Thông Tin Cá Nhân
+              </button>
+            </li>
+            <li>
+              <button class="profile-nav-btn" data-tab="password" onclick="profile.switchTab('password')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Đổi Mật Khẩu
+              </button>
+            </li>
+            <li>
+              <button class="profile-nav-btn" data-tab="orders" onclick="profile.switchTab('orders')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                Đơn Hàng Của Tôi
+              </button>
+            </li>
+            <li>
+              <button class="profile-nav-btn" data-tab="posts" onclick="profile.switchTab('posts')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                Bài Viết Của Tôi
+              </button>
+            </li>
+          </ul>
+        </aside>
+
+        <!-- Main Content Panes -->
+        <div class="profile-content-panel">
+          <!-- Tab 1: Cập nhật thông tin cá nhân -->
+          <div class="profile-tab-pane" id="tab-info">
+            <div class="panel-header">
+              <h2 class="panel-title">Cập Nhật Thông Tin Cá Nhân</h2>
+            </div>
+            <form onsubmit="profile.updateInfo(event)">
+              <div class="form-group">
+                <label class="form-label">Họ và Tên:</label>
+                <input type="text" class="form-control" id="profile-edit-name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Địa Chỉ Email (Không thể thay đổi):</label>
+                <input type="email" class="form-control" id="profile-edit-email" disabled style="background: var(--bg-alt);">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Số Điện Thoại:</label>
+                <input type="tel" class="form-control" id="profile-edit-phone" placeholder="Nhập số điện thoại liên hệ">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Địa Chỉ Giao Hàng Mặc Định:</label>
+                <textarea class="form-control" id="profile-edit-address" rows="3" placeholder="Số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành phố"></textarea>
+              </div>
+              <button type="submit" class="btn btn-accent btn-lg">💾 Lưu Thay Đổi</button>
+            </form>
+          </div>
+
+          <!-- Tab 2: Đổi mật khẩu -->
+          <div class="profile-tab-pane" id="tab-password" style="display: none;">
+            <div class="panel-header">
+              <h2 class="panel-title">Đổi Mật Khẩu Tài Khoản</h2>
+            </div>
+            <form onsubmit="profile.changePassword(event)">
+              <div class="form-group">
+                <label class="form-label">Mật Khẩu Hiện Tại:</label>
+                <input type="password" class="form-control" id="profile-current-password" required placeholder="Nhập mật khẩu hiện tại của bạn">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Mật Khẩu Mới:</label>
+                <input type="password" class="form-control" id="profile-new-password" required placeholder="Tối thiểu 6 ký tự">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Xác Nhận Mật Khẩu Mới:</label>
+                <input type="password" class="form-control" id="profile-confirm-password" required placeholder="Nhập lại mật khẩu mới">
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg">🔒 Cập Nhật Mật Khẩu</button>
+            </form>
+          </div>
+
+          <!-- Tab 3: Đơn hàng của tôi -->
+          <div class="profile-tab-pane" id="tab-orders" style="display: none;">
+            <div class="panel-header">
+              <h2 class="panel-title">Lịch Sử Đơn Hàng</h2>
+            </div>
+            <div id="profile-orders-list"></div>
+          </div>
+
+          <!-- Tab 4: Bài viết của tôi -->
+          <div class="profile-tab-pane" id="tab-posts" style="display: none;">
+            <div class="panel-header" style="display: flex; justify-content: space-between;">
+              <h2 class="panel-title">Bài Viết Của Tôi</h2>
+              <button class="btn btn-sm btn-accent" onclick="blog.openCreateModal()">+ Viết Bài Mới</button>
+            </div>
+            <div id="profile-my-posts-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. VIEW ADMIN (Quản trị hệ thống) -->
+    <section id="view-admin" class="container" style="display: none;">
+      <div class="admin-header">
+        <div>
+          <span class="badge badge-accent">TRANG QUẢN TRỊ VIÊN</span>
+          <h1 style="font-size: 2.2rem; margin-top: 6px;">Tổng Quan Hệ Thống</h1>
+        </div>
+        <div>
+          <button class="btn btn-accent" onclick="admin.openCreateProductModal()">+ Thêm Sản Phẩm Mới</button>
+        </div>
+      </div>
+
+      <!-- Metrics Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon rose">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-revenue">0 ₫</div>
+            <div class="stat-label">Tổng Doanh Thu</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-orders">0</div>
+            <div class="stat-label">Tổng Đơn Hàng</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-products">0</div>
+            <div class="stat-label">Sản Phẩm Thời Trang</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-posts">0</div>
+            <div class="stat-label">Bài Viết Đăng Tải</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-users">0</div>
+            <div class="stat-label">Người Dùng Đăng Ký</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Tabs -->
+      <div class="admin-tabs">
+        <button class="admin-tab-btn active" data-tab="products" onclick="admin.switchTab('products')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 6px;"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+          Quản Lý Sản Phẩm
+        </button>
+        <button class="admin-tab-btn" data-tab="orders" onclick="admin.switchTab('orders')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 6px;"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          Quản Lý Đơn Hàng
+        </button>
+        <button class="admin-tab-btn" data-tab="posts" onclick="admin.switchTab('posts')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 6px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Quản Lý Bài Viết
+        </button>
+      </div>
+
+      <!-- Tab: Sản phẩm -->
+      <div class="admin-panel-card admin-tab-pane" id="admin-tab-products">
+        <table class="table-custom">
+          <thead>
+            <tr>
+              <th>Ảnh</th>
+              <th>Tên Sản Phẩm</th>
+              <th>Giá Bán</th>
+              <th>Kho</th>
+              <th>Nổi bật</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="admin-products-table-body"></tbody>
+        </table>
+      </div>
+
+      <!-- Tab: Đơn hàng -->
+      <div class="admin-panel-card admin-tab-pane" id="admin-tab-orders" style="display: none;">
+        <table class="table-custom">
+          <thead>
+            <tr>
+              <th>Mã Đơn</th>
+              <th>Khách Hàng</th>
+              <th>Tổng Tiền</th>
+              <th>Trạng Thái</th>
+              <th>Ngày Đặt</th>
+            </tr>
+          </thead>
+          <tbody id="admin-orders-table-body"></tbody>
+        </table>
+      </div>
+
+      <!-- Tab: Bài viết -->
+      <div class="admin-panel-card admin-tab-pane" id="admin-tab-posts" style="display: none;">
+        <table class="table-custom">
+          <thead>
+            <tr>
+              <th>Ảnh</th>
+              <th>Tiêu Đề Bài Viết</th>
+              <th>Lượt Xem</th>
+              <th>Ngày Đăng</th>
+              <th>Thao Tác</th>
+            </tr>
+          </thead>
+          <tbody id="admin-posts-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- 1. Modal Đăng Nhập -->
+  <div class="modal-overlay" id="modal-login">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Đăng Nhập Tài Khoản</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('modal-login')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="event.preventDefault(); auth.login(document.getElementById('login-email').value, document.getElementById('login-password').value);">
+          <div class="form-group">
+            <label class="form-label">Email:</label>
+            <input type="email" id="login-email" class="form-control" required placeholder="name@example.com">
+          </div>
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <label class="form-label">Mật Khẩu:</label>
+              <a href="javascript:void(0)" onclick="app.closeModal('modal-login'); app.openModal('modal-forgot-password');" style="font-size: 0.8rem; color: var(--accent);">Quên mật khẩu?</a>
+            </div>
+            <input type="password" id="login-password" class="form-control" required placeholder="Nhập mật khẩu">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 1rem;">Đăng Nhập Ngay</button>
+        </form>
+
+        <!-- Quick Demo Accounts for seamless grading / testing -->
+        <div class="demo-accounts-box">
+          <div class="demo-title">⚡ Chọn Nhanh Tài Khoản Mẫu (Để Thử Nghiệm):</div>
+          <div class="demo-buttons">
+            <button type="button" class="demo-btn" onclick="document.getElementById('login-email').value='admin@fashionhub.vn'; document.getElementById('login-password').value='Admin@123';">
+              🔑 Admin (Quản trị viên)
+            </button>
+            <button type="button" class="demo-btn" onclick="document.getElementById('login-email').value='khachhang@fashionhub.vn'; document.getElementById('login-password').value='User@123';">
+              👤 Khách Hàng Demo
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content: center;">
+        <span style="font-size: 0.9rem; color: var(--text-muted);">Chưa có tài khoản? 
+          <a href="javascript:void(0)" onclick="app.closeModal('modal-login'); app.openModal('modal-register');" style="color: var(--accent); font-weight: 700;">Đăng ký ngay</a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Modal Đăng Ký -->
+  <div class="modal-overlay" id="modal-register">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Tạo Tài Khoản Mới</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('modal-register')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="event.preventDefault(); auth.register({
+          name: document.getElementById('reg-name').value,
+          email: document.getElementById('reg-email').value,
+          password: document.getElementById('reg-password').value,
+          phone: document.getElementById('reg-phone').value,
+          address: document.getElementById('reg-address').value
+        });">
+          <div class="form-group">
+            <label class="form-label">Họ và Tên: *</label>
+            <input type="text" id="reg-name" class="form-control" required placeholder="Nguyễn Văn A">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Đăng Ký: *</label>
+            <input type="email" id="reg-email" class="form-control" required placeholder="name@example.com">
+            <div class="form-help">Hệ thống sẽ gửi email chứa mã xác thực tới hòm thư này.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mật Khẩu: *</label>
+            <input type="password" id="reg-password" class="form-control" required minlength="6" placeholder="Tối thiểu 6 ký tự">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Số Điện Thoại:</label>
+            <input type="tel" id="reg-phone" class="form-control" placeholder="0912345678">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Địa Chỉ:</label>
+            <input type="text" id="reg-address" class="form-control" placeholder="Tỉnh / Thành phố">
+          </div>
+          <button type="submit" class="btn btn-accent" style="width: 100%; padding: 12px; font-size: 1rem;">
+            Tạo Tài Khoản &amp; Gửi Email Xác Nhận
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer" style="justify-content: center;">
+        <span style="font-size: 0.9rem; color: var(--text-muted);">Đã có tài khoản? 
+          <a href="javascript:void(0)" onclick="app.closeModal('modal-register'); app.openModal('modal-login');" style="color: var(--accent); font-weight: 700;">Đăng nhập</a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Modal Xác Thực Email (OTP / Token) -->
+  <div class="modal-overlay" id="modal-verify-email">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Xác Nhận Kích Hoạt Tài Khoản</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('modal-verify-email')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="dev-verify-banner" style="display: none;"></div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5;">
+          Chúng tôi đã gửi email kèm mã xác thực 6 chữ số tới địa chỉ email của bạn. Vui lòng nhập mã để hoàn tất kích hoạt.
+        </p>
+
+        <form onsubmit="event.preventDefault(); auth.verifyEmail(document.getElementById('verify-email-input').value, document.getElementById('verify-otp-input').value);">
+          <div class="form-group">
+            <label class="form-label">Địa Chỉ Email:</label>
+            <input type="email" id="verify-email-input" class="form-control" required placeholder="Email của bạn">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mã Xác Nhận OTP (6 chữ số):</label>
+            <input type="text" id="verify-otp-input" class="form-control" style="font-size: 1.4rem; text-align: center; letter-spacing: 4px; font-weight: 800;" maxlength="6" required placeholder="123456">
+          </div>
+          <button type="submit" class="btn btn-accent" style="width: 100%; padding: 12px; font-size: 1rem;">
+            ✓ Xác Nhận &amp; Kích Hoạt Tài Khoản
+          </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <button type="button" class="btn btn-sm btn-outline" onclick="auth.resendVerification(document.getElementById('verify-email-input').value)">
+            🔄 Chưa nhận được? Gửi lại email xác nhận
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Modal Quên Mật Khẩu -->
+  <div class="modal-overlay" id="modal-forgot-password">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Quên Mật Khẩu</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('modal-forgot-password')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+          Nhập địa chỉ email của bạn. Chúng tôi sẽ gửi hướng dẫn và mã OTP để bạn tạo lại mật khẩu mới.
+        </p>
+        <form onsubmit="event.preventDefault(); auth.forgotPassword(document.getElementById('forgot-email-input').value);">
+          <div class="form-group">
+            <label class="form-label">Email Đã Đăng Ký:</label>
+            <input type="email" id="forgot-email-input" class="form-control" required placeholder="name@example.com">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 1rem;">
+            Gửi Email Đặt Lại Mật Khẩu
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer" style="justify-content: center;">
+        <a href="javascript:void(0)" onclick="app.closeModal('modal-forgot-password'); app.openModal('modal-login');" style="color: var(--accent); font-weight: 600;">← Quay lại đăng nhập</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Modal Tạo Lại Mật Khẩu Mới (Reset Password) -->
+  <div class="modal-overlay" id="modal-reset-password">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Tạo Lại Mật Khẩu Mới</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('modal-reset-password')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="dev-reset-banner" style="display: none;"></div>
+        <form onsubmit="event.preventDefault(); auth.resetPassword(
+          document.getElementById('reset-email-input').value,
+          document.getElementById('reset-otp-input').value,
+          document.getElementById('reset-token-hidden').value,
+          document.getElementById('reset-new-password').value
+        );">
+          <input type="hidden" id="reset-token-hidden" value="">
+          <div class="form-group">
+            <label class="form-label">Địa Chỉ Email:</label>
+            <input type="email" id="reset-email-input" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mã OTP Xác Nhận (6 chữ số):</label>
+            <input type="text" id="reset-otp-input" class="form-control" style="font-size: 1.4rem; text-align: center; letter-spacing: 4px; font-weight: 800;" maxlength="6" required placeholder="123456">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mật Khẩu Mới:</label>
+            <input type="password" id="reset-new-password" class="form-control" required minlength="6" placeholder="Tối thiểu 6 ký tự">
+          </div>
+          <button type="submit" class="btn btn-accent" style="width: 100%; padding: 12px; font-size: 1rem;">
+            💾 Cập Nhật Mật Khẩu Mới
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Modal Chi Tiết Sản Phẩm -->
+  <div class="modal-overlay" id="modal-product-detail">
+    <div class="modal-container modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title">Chi Tiết Sản Phẩm</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('modal-product-detail')">&times;</button>
+      </div>
+      <div class="modal-body" id="product-modal-content">
+        <!-- Rendered dynamically via shop.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Modal Giỏ Hàng -->
+  <div class="modal-overlay" id="modal-cart">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Giỏ Hàng Của Bạn</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('modal-cart')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="cart-items-container" class="cart-items-list"></div>
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Tạm tính:</span>
+            <span id="cart-total-amount">0 ₫</span>
+          </div>
+          <div class="summary-row">
+            <span>Phí giao hàng:</span>
+            <span style="color: var(--success); font-weight: 600;">Miễn phí toàn quốc</span>
+          </div>
+          <div class="summary-row summary-total">
+            <span>Tổng cộng:</span>
+            <span class="total-price" id="cart-total-amount-summary">0 ₫</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="app.closeModal('modal-cart')">Tiếp Tục Mua Sắm</button>
+        <button class="btn btn-accent" id="cart-checkout-btn" onclick="shop.openCheckout()">Tiến Hành Đặt Hàng →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Modal Đặt Hàng (Checkout) -->
+  <div class="modal-overlay" id="modal-checkout">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Thông Tin Thanh Toán &amp; Đặt Hàng</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('modal-checkout')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="checkout-form" onsubmit="shop.submitOrder(event)">
+          <div class="form-group">
+            <label class="form-label">Họ và Tên Người Nhận: *</label>
+            <input type="text" id="checkout-name" class="form-control" required placeholder="Nguyễn Văn A">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Nhận Thông Báo: *</label>
+            <input type="email" id="checkout-email" class="form-control" required placeholder="name@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Số Điện Thoại Giao Hàng: *</label>
+            <input type="tel" id="checkout-phone" class="form-control" required placeholder="0987654321">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Địa Chỉ Giao Hàng Chi Tiết: *</label>
+            <textarea id="checkout-address" class="form-control" rows="2" required placeholder="Số nhà, tên đường, phường/xã, quận/huyện..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Ghi Chú Đơn Hàng (Tùy chọn):</label>
+            <input type="text" id="checkout-notes" class="form-control" placeholder="Giao giờ hành chính, gọi trước khi đến...">
+          </div>
+
+          <!-- Phương thức thanh toán -->
+          <div class="form-group">
+            <label class="form-label">Chọn Phương Thức Thanh Toán:</label>
+            <div class="payment-methods">
+              <label class="payment-method-card active" id="pay-card-cod" onclick="
+                document.getElementById('pay-method-cod').checked = true;
+                this.classList.add('active');
+                document.getElementById('pay-card-bank').classList.remove('active');
+                document.getElementById('bank-qr-box').classList.remove('show');
+              ">
+                <input type="radio" id="pay-method-cod" name="payment_method" value="cod" checked style="display: none;">
+                <div style="margin-bottom: 6px; color: var(--accent);">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+                </div>
+                <strong>COD (Tiền mặt)</strong>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Thanh toán khi nhận hàng</div>
+              </label>
+
+              <label class="payment-method-card" id="pay-card-bank" onclick="
+                document.getElementById('pay-method-bank').checked = true;
+                this.classList.add('active');
+                document.getElementById('pay-card-cod').classList.remove('active');
+                document.getElementById('bank-qr-box').classList.add('show');
+              ">
+                <input type="radio" id="pay-method-bank" name="payment_method" value="banking" style="display: none;">
+                <div style="margin-bottom: 6px; color: var(--accent);">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="21" x2="21" y2="21"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="5 6 12 3 19 6"/><line x1="4" y1="10" x2="4" y2="21"/><line x1="20" y1="10" x2="20" y2="21"/><line x1="8" y1="14" x2="8" y2="17"/><line x1="12" y1="14" x2="12" y2="17"/><line x1="16" y1="14" x2="16" y2="17"/></svg>
+                </div>
+                <strong>Chuyển Khoản QR</strong>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Quét mã QR ngân hàng 24/7</div>
+              </label>
+            </div>
+
+            <!-- VietQR Box -->
+            <div id="bank-qr-box" class="bank-qr-box">
+              <img src="https://api.vietqr.io/image/970422-0988888888-0f172a.jpg?accountName=AURA%20FASHION%20NHOM%204&amount=0&addInfo=THANH%20TOAN%20DON%20HANG" style="max-width: 220px; margin: 0 auto 10px; border-radius: 8px;">
+              <div style="font-size: 0.85rem; font-weight: 600;">Ngân hàng: MB Bank • STK: 0988888888</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Chủ TK: CỬA HÀNG AURA FASHION NHÓM 4</div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700; margin: 16px 0;">
+            <span>Tổng số tiền cần trả:</span>
+            <span style="color: var(--rose);" id="checkout-total-amount">0 ₫</span>
+          </div>
+
+          <button type="submit" class="btn btn-accent btn-lg" style="width: 100%;">
+            Xác Nhận Đặt Hàng Ngay
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. Modal Tạo / Cập Nhật Bài Viết (Post Editor) -->
+  <div class="modal-overlay" id="modal-post-editor">
+    <div class="modal-container modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title" id="post-modal-title">Tạo Bài Viết Mới</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('modal-post-editor')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="blog.savePost(event)">
+          <div class="form-group">
+            <label class="form-label">Tiêu Đề Bài Viết: *</label>
+            <input type="text" id="post-form-title" class="form-control" required placeholder="Nhập tiêu đề bài viết...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Chuyên Mục / Chủ Đề:</label>
+            <select id="post-form-category" class="form-control">
+              <option value="Xu hướng thời trang">Xu hướng thời trang</option>
+              <option value="Mẹo thời trang">Mẹo thời trang</option>
+              <option value="Chăm sóc đồ">Chăm sóc đồ</option>
+              <option value="Phong cách sống">Phong cách sống</option>
+              <option value="Bộ sưu tập">Bộ sưu tập</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tóm Tắt Ngắn:</label>
+            <textarea id="post-form-summary" class="form-control" rows="2" placeholder="Một vài dòng tóm tắt nội dung chính..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Ảnh Đại Diện (URL hoặc Tải lên File):</label>
+            <input type="url" id="post-form-thumbnail-url" class="form-control" placeholder="https://example.com/image.jpg" style="margin-bottom: 8px;">
+            <input type="file" id="post-form-thumbnail-file" class="form-control" accept="image/*">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nội Dung Chi Tiết: *</label>
+            <textarea id="post-form-content" class="form-control" rows="8" required placeholder="Viết nội dung bài viết chi tiết tại đây..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-accent btn-lg" style="width: 100%;">
+            💾 Lưu Bài Viết
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. Modal Thêm / Cập Nhật Sản Phẩm (Admin) -->
+  <div class="modal-overlay" id="modal-admin-product-editor">
+    <div class="modal-container modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title" id="product-form-modal-title">Thêm Sản Phẩm Mới</h3>
+        <button class="modal-close-btn" onclick="app.closeModal('modal-admin-product-editor')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="admin.saveProduct(event)">
+          <div class="form-group">
+            <label class="form-label">Tên Sản Phẩm: *</label>
+            <input type="text" id="admin-prod-name" class="form-control" required placeholder="Tên sản phẩm">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Danh Mục: *</label>
+              <select id="admin-prod-cat" class="form-control">
+                <option value="1">Áo Nam &amp; Nữ</option>
+                <option value="2">Quần &amp; Jeans</option>
+                <option value="3">Áo Khoác &amp; Blazer</option>
+                <option value="4">Váy &amp; Đầm Nữ</option>
+                <option value="5">Phụ Kiện Thời Trang</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Giá Bán (VNĐ): *</label>
+              <input type="number" id="admin-prod-price" class="form-control" required placeholder="199000">
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Giá Gốc (Trước giảm giá):</label>
+              <input type="number" id="admin-prod-orig-price" class="form-control" placeholder="250000">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Số Lượng Trong Kho:</label>
+              <input type="number" id="admin-prod-stock" class="form-control" value="50">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Kích Cỡ (Sizes - cách nhau bởi dấu phẩy):</label>
+            <input type="text" id="admin-prod-sizes" class="form-control" value="S, M, L, XL">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Màu Sắc (Colors - cách nhau bởi dấu phẩy):</label>
+            <input type="text" id="admin-prod-colors" class="form-control" value="Đen, Trắng, Be">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hình Ảnh (URL hoặc File tải lên):</label>
+            <input type="url" id="admin-prod-image-url" class="form-control" placeholder="https://..." style="margin-bottom: 8px;">
+            <input type="file" id="admin-prod-image-file" class="form-control" accept="image/*">
+          </div>
+          <div class="form-group">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="checkbox" id="admin-prod-featured">
+              <span style="font-weight: 600;">Đánh dấu sản phẩm nổi bật (HOT) trên trang chủ</span>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mô Tả Sản Phẩm:</label>
+            <textarea id="admin-prod-desc" class="form-control" rows="4" placeholder="Mô tả chất liệu, kiểu dáng..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-accent btn-lg" style="width: 100%;">
+            💾 Lưu Thông Tin Sản Phẩm
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+          <img src="/images/logo-icon.svg" alt="AURA FASHION" style="width: 42px; height: 42px;">
+          <div style="line-height: 1.1;">
+            <div style="font-size: 1.3rem; font-weight: 900; letter-spacing: 2px; color: white;">AURA</div>
+            <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; color: #f7dc6f;">HAUTE COUTURE</div>
+          </div>
+        </div>
+        <p style="line-height: 1.6; font-size: 0.9rem; margin-bottom: 16px;">
+          Dự án website bán quần áo thời trang trực tuyến tích hợp xác thực email, quản lý bài viết và trang cá nhân.
+        </p>
+        <span class="badge badge-accent">NHÓM 4 - PTPMMNM 2026</span>
+      </div>
+      <div class="footer-col">
+        <h4>Điều Hướng</h4>
+        <ul>
+          <li><a href="#home">Trang Chủ</a></li>
+          <li><a href="#shop">Cửa Hàng</a></li>
+          <li><a href="#blog">Bài Viết Thời Trang</a></li>
+          <li><a href="#profile">Trang Cá Nhân</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Chính Sách</h4>
+        <ul>
+          <li><a href="javascript:void(0)">Chính sách đổi trả 30 ngày</a></li>
+          <li><a href="javascript:void(0)">Chính sách bảo mật</a></li>
+          <li><a href="javascript:void(0)">Hướng dẫn chọn kích cỡ</a></li>
+          <li><a href="javascript:void(0)">Phương thức thanh toán</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Liên Hệ Dự Án</h4>
+        <p style="font-size: 0.9rem; margin-bottom: 8px;">📍 Đại học / Khoa Công nghệ Thông tin</p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px;">📞 Hotline: 0988 888 888</p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px;">✉ Email: contact@aurafashion.vn</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>© 2026 AURA FASHION - Môn Phát triển phần mềm mã nguồn mở. Mọi quyền được bảo lưu.</div>
+      <div>Xây dựng bởi Nhóm 4 với Node.js, Express &amp; SQLite.</div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- JavaScript Application Files -->
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/shop.js"></script>
+  <script src="/js/blog.js"></script>
+  <script src="/js/profile.js"></script>
+  <script src="/js/admin.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
