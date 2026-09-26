@@ -1,0 +1,146 @@
+/* ==========================================================================
+   AURA FASHION - AUTHENTICATION & EMAIL VERIFICATION STYLES
+   ========================================================================== */
+
+.auth-card {
+  max-width: 440px;
+  margin: 40px auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+}
+
+.auth-header {
+  padding: 30px 30px 20px;
+  text-align: center;
+}
+
+.auth-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.auth-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.auth-body {
+  padding: 0 30px 30px;
+}
+
+.auth-footer {
+  padding: 20px 30px;
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.auth-footer a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* OTP Input Boxes */
+.otp-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.otp-box {
+  width: 46px;
+  height: 54px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  color: var(--text-main);
+  transition: var(--transition);
+}
+
+.otp-box:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* Dev helper banner for emails */
+.dev-email-banner {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: #166534;
+}
+
+.dev-email-banner strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.dev-email-link {
+  display: inline-block;
+  margin-top: 8px;
+  background: #16a34a;
+  color: white;
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+.dev-email-link:hover {
+  background: #15803d;
+}
+
+/* Demo account quick login box */
+.demo-accounts-box {
+  margin-top: 20px;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: var(--bg-alt);
+  border: 1px dashed var(--border);
+}
+
+.demo-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.demo-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.demo-btn {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  font-size: 0.785rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.demo-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
