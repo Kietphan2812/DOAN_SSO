@@ -1,12 +1,17 @@
 # Dependencies
 node_modules/
-package-lock.json
+
+# Test Coverage
+coverage/
+.nyc_output/
 
 # Environment Variables
 .env
+.env.test
 
 # SQLite local data (optional, or push schema)
 # database.sqlite
+database.test.sqlite
 
 # Logs & temp
 npm-debug.log*
@@ -14,3 +19,4 @@ yarn-debug.log*
 yarn-error.log*
 .DS_Store
 Thumbs.db
+

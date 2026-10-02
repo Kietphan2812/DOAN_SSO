@@ -2,11 +2,11 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const bcrypt = require('bcryptjs');
 
-const dbPath = path.resolve(__dirname, '../../database.sqlite');
+const dbPath = process.env.DB_PATH || path.resolve(__dirname, '../../database.sqlite');
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.error('Lỗi kết nối cơ sở dữ liệu SQLite:', err.message);
-  } else {
+  } else if (process.env.NODE_ENV !== 'test') {
     console.log('✓ Đã kết nối cơ sở dữ liệu SQLite tại:', dbPath);
   }
 });
@@ -380,4 +380,4 @@ Bảng size mang tính chất tham khảo chung. Nếu số đo của bạn nằ
 // Initialize tables on startup
 initDB().catch(console.error);
 
-module.exports = { db, query };
+module.exports = { db, query, initDB };

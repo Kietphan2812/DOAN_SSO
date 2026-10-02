@@ -5,6 +5,13 @@ let etherealAccount = null;
 
 // Initialize mailer
 async function initTransporter() {
+  if (process.env.NODE_ENV === 'test') {
+    transporter = {
+      sendMail: async () => ({ messageId: 'test-simulated-id' })
+    };
+    return;
+  }
+
   if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
     // Real SMTP (Gmail, SendGrid, etc.)
     transporter = nodemailer.createTransport({

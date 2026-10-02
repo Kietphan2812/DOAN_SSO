@@ -49,10 +49,14 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`\n======================================================`);
-  console.log(`  🚀 AURA FASHION STORE ĐANG CHẠY TẠI: http://localhost:${PORT}`);
-  console.log(`  👤 Tài khoản Admin: admin@fashionhub.vn / Admin@123`);
-  console.log(`  👤 Tài khoản Demo:  khachhang@fashionhub.vn / User@123`);
-  console.log(`======================================================\n`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`\n======================================================`);
+    console.log(`  🚀 AURA FASHION STORE ĐANG CHẠY TẠI: http://localhost:${PORT}`);
+    console.log(`  👤 Tài khoản Admin: admin@fashionhub.vn / Admin@123`);
+    console.log(`  👤 Tài khoản Demo:  khachhang@fashionhub.vn / User@123`);
+    console.log(`======================================================\n`);
+  });
+}
+
+module.exports = app;
