@@ -25,6 +25,7 @@ app.use('/api/posts', require('./server/routes/posts'));
 app.use('/api/products', require('./server/routes/products'));
 app.use('/api/orders', require('./server/routes/orders'));
 app.use('/api/stats', require('./server/routes/stats'));
+app.use('/api/kiet', require('./server/routes/kiet'));
 
 // Health check
 app.get('/api/health', (req, res) => {
