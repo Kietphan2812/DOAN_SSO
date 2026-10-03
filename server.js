@@ -18,6 +18,24 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
+// ==========================================================
+// CÁC TUYẾN ĐƯỜNG API (ROUTES) CỦA 4 THÀNH VIÊN
+// (Thành viên nào nộp bài thì mở comment dòng tương ứng của mình)
+// ==========================================================
+// 1. Nguyễn Thế Nhất (Auth & OTP):
+// app.use('/api/auth', require('./server/routes/auth'));
+
+// 2. Dương Quốc Bảo (Orders & Stats):
+// app.use('/api/orders', require('./server/routes/orders'));
+// app.use('/api/stats', require('./server/routes/stats'));
+
+// 3. Nguyễn Như Hồng Hạnh (Blog & Posts):
+// app.use('/api/posts', require('./server/routes/posts'));
+
+// 4. Nguyễn Nữ Hồng Nhung (Shop & Products):
+// app.use('/api/products', require('./server/routes/products'));
+// ==========================================================
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({
