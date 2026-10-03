@@ -35,6 +35,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 // 4. Nguyễn Nữ Hồng Nhung (Shop & Products):
 // app.use('/api/products', require('./server/routes/products'));
 // ==========================================================
+app.use('/api/posts', require('./server/routes/posts'));
 
 // Health check
 app.get('/api/health', (req, res) => {
