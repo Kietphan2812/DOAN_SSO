@@ -175,10 +175,10 @@ const app = {
     // Route listener
     window.addEventListener('hashchange', app.handleRoute);
 
-    // Initialize modules
-    await auth.init();
-    await shop.init();
-    await blog.init();
+    // Initialize modules if present
+    if (window.auth && typeof auth.init === 'function') await auth.init();
+    if (window.shop && typeof shop.init === 'function') await shop.init();
+    if (window.blog && typeof blog.init === 'function') await blog.init();
 
     // Trigger initial route
     app.handleRoute();

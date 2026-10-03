@@ -18,13 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
-// Routes
-app.use('/api/auth', require('./server/routes/auth'));
-app.use('/api/user', require('./server/routes/user'));
-app.use('/api/posts', require('./server/routes/posts'));
-app.use('/api/products', require('./server/routes/products'));
-app.use('/api/orders', require('./server/routes/orders'));
-app.use('/api/stats', require('./server/routes/stats'));
+// Base Routes
 app.use('/api/kiet', require('./server/routes/kiet'));
 
 // Health check
