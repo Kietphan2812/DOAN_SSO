@@ -18,9 +18,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
-// Base Routes
-app.use('/api/kiet', require('./server/routes/kiet'));
-
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({
