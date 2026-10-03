@@ -12,6 +12,18 @@ Cảm ơn bạn đã tham gia phát triển dự án AURA FASHION (Nhóm 4, môn
 | Người phân loại | Triage | Dương Quốc Bảo |
 | Người xem | Read | Nguyễn Như Hồng Hạnh |
 
+## Phân công file và vị trí kích hoạt của 4 thành viên
+
+| Thành viên | File chức năng cần tạo | File Test cần viết | Vị trí mở kích hoạt trong code |
+|---|---|---|---|
+| **1. Nguyễn Thế Nhất** | • `server/routes/auth.js`<br>• `server/config/mailer.js`<br>• `server/middleware/auth.js`<br>• `public/js/auth.js`<br>• `public/css/auth.css` | • `tests/auth.test.js`<br>• `tests/middleware.test.js` | • `server.js` (dòng 26): mở `app.use('/api/auth', ...)`<br>• `public/index.html`: mở `<link rel="stylesheet" href="/css/auth.css">` và `<script src="/js/auth.js"></script>` |
+| **2. Dương Quốc Bảo** | • `server/routes/orders.js`<br>• `server/routes/stats.js`<br>• `public/js/admin.js`<br>• `public/css/admin.css` | • `tests/orders.test.js`<br>• `tests/stats.test.js` | • `server.js` (dòng 29-30): mở `/api/orders` & `/api/stats`<br>• `public/index.html`: mở `admin.css` và `admin.js` |
+| **3. Nguyễn Như Hồng Hạnh** | • `server/routes/posts.js`<br>• `public/js/blog.js`<br>• `public/css/blog.css` | • `tests/posts.test.js` | • `server.js` (dòng 33): mở `/api/posts`<br>• `public/index.html`: mở `blog.css` và `blog.js` |
+| **4. Nguyễn Nữ Hồng Nhung** | • `server/routes/products.js`<br>• `public/js/shop.js`<br>• `public/css/shop.css` | • `tests/products.test.js` | • `server.js` (dòng 36): mở `/api/products`<br>• `public/index.html`: mở `shop.css` và `shop.js` |
+
+> 💡 **Mẹo:** Toàn bộ code hoàn chỉnh và test đã được sao lưu tại nhánh `backup/full-project-with-tests`. Thành viên chỉ cần lấy đúng file của mình và tạo PR!
+
+
 ## Cài đặt môi trường
 
 Yêu cầu: **Node.js** (phiên bản LTS) và **Git**.
